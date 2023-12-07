@@ -56,11 +56,10 @@ class AsetController extends Controller
 
         // Update atribut lainnya kecuali 'foto'
         $data->update($request->except('foto'));
-        if(session('halaman_url')){
+        if (session('halaman_url')) {
             return Redirect(session('halaman_url'))->with('success', 'Data Berhasil diedit');
         }
 
-        // Cek apakah ada file 'new_foto' yang diunggah dalam permintaan
         if ($request->hasFile('new_foto')) {
             // Hapus foto lama jika ada
             if ($data->foto) {
