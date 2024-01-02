@@ -1,5 +1,5 @@
 <?php
-
+/// Migration untuk tabel 'asets'
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('nama_aset');
             $table->bigInteger('jumlah');
-            $table->string('lokasi')->nullable();
             $table->enum('kategori', ['perabotan', 'elektronik', 'perlengkapan', 'transportasi']);
             $table->year('tahun');
             $table->integer('umur')->nullable();

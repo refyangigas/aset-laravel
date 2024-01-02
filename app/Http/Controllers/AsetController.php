@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aset;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -23,7 +24,8 @@ class AsetController extends Controller
 
     public function tambahaset()
     {
-        return view('tambahdata');
+        $lokasi = Lokasi::all();
+        return view('tambahdata', compact("lokasi"));
     }
 
     public function insertdata(Request $request)
