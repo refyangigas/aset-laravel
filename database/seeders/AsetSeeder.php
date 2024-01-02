@@ -20,14 +20,14 @@ class AsetSeeder extends Seeder
         foreach (range(1, 10) as $index) {
             Aset::create([
                 'nomor_seri' => $faker->unique()->bothify('SERI###'),
-                'foto' => $faker->imageUrl($width = 640, $height = 480), // Menggunakan Faker untuk URL gambar acak
+                'foto' => $faker->imageUrl($width = 640, $height = 480),
                 'nama_aset' => $faker->word,
                 'jumlah' => $faker->numberBetween(1, 20),
-                'lokasi_id' => $faker->optional()->randomElement(['1', '2', '3']),
+                'lokasi_id' => $faker->randomElement(['1', '2', '3']), // Memastikan lokasi_id selalu terisi
                 'kategori' => $faker->randomElement(['perabotan', 'elektronik', 'perlengkapan', 'transportasi']),
                 'tahun' => $faker->numberBetween(2010, 2022),
-                'umur' => $faker->optional()->numberBetween(1, 10),
-                'harga' => $faker->optional()->numberBetween(1000000, 10000000),
+                'umur' => $faker->numberBetween(1, 10), // Memastikan umur selalu terisi
+                'harga' => $faker->numberBetween(1000000, 10000000), // Memastikan harga selalu terisi
                 'status' => $faker->randomElement(['aktif', 'non-aktif', 'rusak', 'perbaikan', 'disewakan', 'pemindahtanganan']),
             ]);
         }

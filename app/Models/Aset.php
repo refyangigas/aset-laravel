@@ -14,7 +14,7 @@ class Aset extends Model
         'foto',
         'nama_aset',
         'jumlah',
-        'lokasi',
+        'lokasi_id',
         'kategori',
         'tahun',
         'umur',

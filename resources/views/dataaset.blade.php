@@ -49,17 +49,18 @@
                         <tr>
                             <th scope="row">{{ $index + $data->firstItem() }}</th>
                             <td>{{ $row->nomor_seri }}</td>
+
                             <td>
                                 {{-- <img src="{{ asset('fotoaset/'.$row->foto)}}" alt="" style="width:50px;"> --}}
                                 <img src="{{ $row->foto }}" alt="" style="width:50px;">
                             </td>
                             <td>{{ $row->nama_aset }}</td>
                             <td>{{ $row->jumlah }}</td>
-                            <td>{{ $row->lokasi_id }}</td>
+                            <td>{{ $row->lokasi->nama }}</td>
                             <td>{{ $row->kategori }}</td>
                             <td>{{ $row->tahun }}</td>
                             <td>{{ $row->umur }}</td>
-                            <td>{{ $row->harga }}</td>
+                            <td>Rp {{ number_format($row->harga, 0, ',', '.') }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
                                 <a href="/tampilkandata/{{ $row->id }}" type="button"
@@ -74,36 +75,47 @@
             {{ $data->links() }}
         </div>
     </div>
-    @include('include.script')
 
+    @include('include.script')
+    <script>
+        $('#inputSearch').keyup(function() {
+            var query = $(this).val()
+                .toLowerCase(); // Mendapatkan nilai dari input pencarian dan konversi ke lower case
+            $('tbody tr').filter(function() {
+                // Melakukan filter pada setiap baris tabel
+                $(this).toggle($(this).text().toLowerCase().indexOf(query) > -1);
+            });
+        });
+    </script>
     <script>
         $('.delete').click(function() {
-            var asetid = $(this).attr('data-id');
-            var nama = $(this).attr('data-nama');
+                var asetid = $(this).attr('data-id');
+                var nama = $(this).attr('data-nama');
 
-            swal({
-                    title: "Yakin?",
-                    text: "Kamu akan menghapus aset dengan nama " + nama + " ",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location = "/delete/" + asetid + ""
-                        swal("Data berhasil dihapus", {
-                            icon: "success",
-                        });
-                    } else {
-                        swal("Data tidak terhapus");
-                    }
-                });
-        })
-    </script>
+                swal({
+                        title: "Yakin?",
+                        text: "Kamu akan menghapus aset dengan nama " + nama + " ",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "/delete/" + asetid + ""
+                            swal("Data berhasil dihapus", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Data tidak terhapus");
+                        }
+                    });
+            }) <
+            />
 
-    <script>
-        @if (Session::has('success'))
-            toastr.success("{{ Session::get('success') }}")
-        @endif
+            <
+            script >
+            @if (Session::has('success'))
+                toastr.success("{{ Session::get('success') }}")
+            @endif
     </script>
 @endsection

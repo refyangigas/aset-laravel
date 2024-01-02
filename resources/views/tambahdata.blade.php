@@ -94,6 +94,7 @@
                     </div>
                 </div>
                 @include('include.script')
+
                 <script>
                     $(document).ready(function() {
                         $('#exampleInputHarga').inputmask('numeric', {

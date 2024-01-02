@@ -13,13 +13,14 @@ class AsetController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $data = Aset::Where('nama_aset', 'LIKE', '%' . $request->search . '%')->paginate(3);
+            $data = Aset::with("lokasi")->Where('nama_aset', 'LIKE', '%' . $request->search . '%')->paginate(10);
             Session::put('halaman_url', request()->fullUrl());
         } else {
-            $data = Aset::paginate(3);
+            $data = Aset::with("lokasi")->paginate(10);
             Session::put('halaman_url', request()->fullUrl());
         }
-        return view('dataaset', compact('data'));
+        $totalharga = Aset::sum('harga');
+        return view('dataaset', compact('data', "totalharga"));
     }
 
     public function tambahaset()
@@ -30,18 +31,29 @@ class AsetController extends Controller
 
     public function insertdata(Request $request)
     {
-        $data = Aset::create($request->all());
-        // Ambil nilai harga dari form
-        $harga = $request->input('harga');
+        // Dapatkan semua data dari form
+        $data = $request->all();
 
         // Bersihkan nilai harga dari karakter non-numerik, hanya menyisakan angka dan titik desimal
-        $harga = str_replace(['Rp ', '.', ','], '', $harga);
+        $harga = str_replace(['Rp ', '.', ','], '', $data['harga']);
 
+        // Ubah nilai harga ke dalam format numerik
+        $data['harga'] = (float) $harga;
+
+        // Disarankan untuk menambahkan nilai lokasi_id ke data yang akan disimpan
+        // Sesuaikan ini dengan logika aplikasi Anda untuk menentukan nilai lokasi_id
+        $data['lokasi_id'] = $request->input('lokasi'); // Ini contoh, pastikan nilai ini valid
+
+        // Buat data aset baru dengan data yang sudah dimodifikasi
+        $newAset = Aset::create($data);
+
+        // Proses penyimpanan foto jika ada
         if ($request->hasFile('foto')) {
             $request->file('foto')->move('fotoaset/', $request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
-            $data->save();
+            $newAset->foto = $request->file('foto')->getClientOriginalName();
+            $newAset->save();
         }
+
         return redirect()->route('aset')->with('success', 'Data Berhasil ditambahkan');
     }
 

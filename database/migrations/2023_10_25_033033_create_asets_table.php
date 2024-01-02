@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('kategori', ['perabotan', 'elektronik', 'perlengkapan', 'transportasi']);
             $table->year('tahun');
             $table->integer('umur')->nullable();
-            $table->string('harga')->nullable();
+            $table->bigInteger('harga')->nullable();
             $table->enum('status', ['aktif', 'non-aktif', 'rusak', 'perbaikan', 'disewakan', 'pemindahtanganan']);
             $table->timestamps();
         });
