@@ -108,7 +108,26 @@
                         });
                     });
                 </script>
-
+                @if (session('success'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: '{{ session('success') }}',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Lihat Data Aset'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect pengguna ke halaman /aset jika mereka menekan tombol konfirmasi pada SweetAlert
+                                    window.location.href = "/aset";
+                                }
+                            });
+                        });
+                    </script>
+                @endif
 
 </body>
 @include('include.footer')

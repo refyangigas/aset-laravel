@@ -55,7 +55,7 @@ class AsetController extends Controller
             $newAset->save();
         }
 
-        return redirect()->route('aset')->with('success', 'Data Berhasil ditambahkan');
+        return redirect()->route('tambahaset')->with('success', 'Data Berhasil ditambahkan');
     }
 
     public function tampilkandata($id)
