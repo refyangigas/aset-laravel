@@ -44,7 +44,7 @@
                             <div class="mb-3">
                                 <label for="exampleInputLokasi" class="form-label">Lokasi</label>
                                 <select name="lokasi" class="form-control" id="exampleInputLokasi">
-                                    <option value="">Pilih Lokasi</option>
+                                    <option value="">--Pilih Lokasi--</option>
                                     @foreach ($lokasi as $l)
                                         <option value="{{ $l->id }}">{{ $l->nama }}</option>
                                     @endforeach

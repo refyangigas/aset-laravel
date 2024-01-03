@@ -3,29 +3,50 @@
 namespace Database\Seeders;
 
 use App\Models\Lokasi;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-class lokasiseeder extends Seeder
+class LokasiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
         $kecamatan = [
-            'Ajung',
+            'Kencong',
+            'Gumuk Mas',
+            'Puger',
+            'Wuluhan',
             'Ambulu',
-            'Arjasa',
+            'Tempurejo',
+            'Silo',
+            'Mayang',
+            'Mumbulsari',
+            'Jenggawah',
+            'Ajung',
+            'Rambipuji',
             'Balung',
+            'Umbulsari',
+            'Semboro',
+            'Jombang',
+            'Sumberbaru',
+            'Tanggul',
             'Bangsalsari',
-            'Gumukmas',
+            'Panti',
+            'Sukorambi',
+            'Arjasa',
+            'Pakusari',
+            'Kalisat',
+            'Ledokombo',
+            'Sumberjambe',
+            'Sukowono',
             'Jelbuk',
-            // Tambahkan kecamatan lainnya sesuai kebutuhan
+            'Kaliwates',
+            'Sumbersari',
+            'Patrang',
         ];
-
-        $faker = Faker::create('id_ID');
 
         foreach ($kecamatan as $nama_kecamatan) {
             Lokasi::create([
