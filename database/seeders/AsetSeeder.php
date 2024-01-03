@@ -15,27 +15,56 @@ class AsetSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        Aset::create([
+            'nomor_seri' => '54321',
+            'foto' => 'foto.jpg',
+            'nama_aset' => 'Nama Aset 2',
+            'jumlah' => 5,
+            'kategori' => 'elektronik',
+            'tahun' => 2023,
+            'umur' => 3,
+            'harga' => 8000000,
+            'status' => 'non-aktif',
+            'lokasi_id' => 1 // Isikan ID lokasi yang sesuai
+        ]);
 
-        foreach (range(1, 10) as $index) {
-            $fotoName = 'aset_'.$index.'.jpg'; // Buat nama file gambar yang unik
+        Aset::create([
+            'nomor_seri' => '67890',
+            'foto' => 'foto.jpg',
+            'nama_aset' => 'Nama Aset 3',
+            'jumlah' => 8,
+            'kategori' => 'perlengkapan',
+            'tahun' => 2021,
+            'umur' => 2,
+            'harga' => 6000000,
+            'status' => 'aktif',
+            'lokasi_id' => 2 // Isikan ID lokasi yang sesuai
+        ]);
 
-            // Simpan gambar secara lokal di folder 'public/fotoaset/'
-            $fotoPath = public_path('fotoaset/'.$fotoName);
-            copy($faker->imageUrl($width = 640, $height = 480), $fotoPath);
+        Aset::create([
+            'nomor_seri' => '11111',
+            'foto' => 'foto.jpg',
+            'nama_aset' => 'Nama Aset 4',
+            'jumlah' => 12,
+            'kategori' => 'perabotan',
+            'tahun' => 2024,
+            'umur' => 1,
+            'harga' => 7000000,
+            'status' => 'aktif',
+            'lokasi_id' => 1 // Isikan ID lokasi yang sesuai
+        ]);
 
-            Aset::create([
-                'nomor_seri' => $faker->unique()->bothify('SERI###'),
-                'foto' => $fotoName, // Simpan nama file gambar ke dalam database
-                'nama_aset' => $faker->word,
-                'jumlah' => $faker->numberBetween(1, 20),
-                'lokasi_id' => $faker->randomElement(['1', '2', '3']), // Memastikan lokasi_id selalu terisi
-                'kategori' => $faker->randomElement(['perabotan', 'elektronik', 'perlengkapan', 'transportasi']),
-                'tahun' => $faker->numberBetween(2010, 2022),
-                'umur' => $faker->numberBetween(1, 10), // Memastikan umur selalu terisi
-                'harga' => $faker->numberBetween(1000000, 10000000), // Memastikan harga selalu terisi
-                'status' => $faker->randomElement(['aktif', 'non-aktif', 'rusak', 'perbaikan', 'disewakan', 'pemindahtanganan']),
-            ]);
-        }
+        Aset::create([
+            'nomor_seri' => '22222',
+            'foto' => 'foto.jpg',
+            'nama_aset' => 'Nama Aset 5',
+            'jumlah' => 7,
+            'kategori' => 'transportasi',
+            'tahun' => 2022,
+            'umur' => 4,
+            'harga' => 9000000,
+            'status' => 'rusak',
+            'lokasi_id' => 3 // Isikan ID lokasi yang sesuai
+        ]);
     }
 }
