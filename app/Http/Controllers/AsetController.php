@@ -20,7 +20,8 @@ class AsetController extends Controller
             Session::put('halaman_url', request()->fullUrl());
         }
         $totalharga = Aset::sum('harga');
-        return view('dataaset', compact('data', "totalharga"));
+        $totalaset = Aset::sum('jumlah');
+        return view('dataaset', compact('data', "totalharga", "totalaset"));
     }
 
     public function tambahaset()

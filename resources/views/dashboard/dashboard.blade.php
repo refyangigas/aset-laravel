@@ -36,7 +36,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                                <h6 class="text-muted font-semibold">Jumlah Aset</h6>
+                                                <h6 class="text-muted font-semibold">Harga Aset</h6>
                                                 <h6 class="font-extrabold mb-0">Rp
                                                     {{ number_format($totalharga, 0, ',', '.') }}</h6>
                                             </div>
@@ -55,8 +55,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                                <h6 class="text-muted font-semibold">Followers</h6>
-                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                                <h6 class="text-muted font-semibold">Jumlah Aset</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $totalaset }}</h6>
                                             </div>
                                         </div>
                                     </div>
