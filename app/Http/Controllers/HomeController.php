@@ -10,6 +10,10 @@ class HomeController extends Controller
     public function home()
     {
         $totalharga = Aset::sum('harga');
-        return view('home', compact("totalharga"));
+        $asetByYear = Aset::selectRaw('tahun, COUNT(*) as jumlah_aset')
+            ->groupBy('tahun')
+            ->orderBy('tahun', 'ASC')
+            ->get();
+        return view('home', compact("totalharga", "asetByYear"));
     }
 }
