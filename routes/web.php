@@ -5,6 +5,7 @@ use App\Http\Controllers\AsetController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\HomeController;
 use App\Models\Aset;
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Models\Aset;
 |
 */
 
-Route::get('/', [dashboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/', [HomeController::class, 'home'])->name('dashboard')->middleware('auth');
 
 Route::get('/aset', [AsetController::class, 'index'])->name('aset')->middleware('auth');
 
@@ -34,12 +35,12 @@ Route::get('/exportpdf', [AsetController::class, 'exportpdf'])->name('exportpdf'
 
 //auth
 Route::get('/login', [loginController::class, 'login'])->name('login');
-Route::post('/loginuser',[loginController::class, 'loginuser'])->name ('loginuser');
-Route::get('/register',[registerController::class, 'register'])->name ('register');
-Route::post('/registeruser',[registerController::class, 'registeruser'])->name ('registeruser');
-Route::post('/logout',[loginController::class, 'logout'])->name ('logout');
+Route::post('/loginuser', [loginController::class, 'loginuser'])->name('loginuser');
+Route::get('/register', [registerController::class, 'register'])->name('register');
+Route::post('/registeruser', [registerController::class, 'registeruser'])->name('registeruser');
+Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
-Route::get('/jumlah', function(){
+Route::get('/jumlah', function () {
     $jumlah = Aset::count();
     return view('dashboard.dashboard', compact('jumlah'));
 });
