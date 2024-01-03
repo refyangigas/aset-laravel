@@ -4,9 +4,6 @@
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="/"><img src=" {{ 'template/assets/compiled/png/logo1.png' }}" alt="Logo" width="50" height="50"></a>
-                </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
@@ -64,13 +61,38 @@
                     @auth
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="sidebar-link @if (Request::routeIs('logout')) active @endif">
+                        <button type="submit" class="sidebar-link @if (Request::routeIs('logout')) active @endif logout-btn">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Logout</span>
                         </button>
                     </form>
                     @endauth
                 </li>
+
+                <!-- Section Style pada halaman -->
+<style>
+    /* Kode CSS tambahan untuk tombol logout */
+    .sidebar-item .logout-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .sidebar-item .logout-btn:hover {
+        background-color: #f8f9fa;
+    }
+
+    .sidebar-item .logout-btn i {
+        margin-right: 10px;
+    }
+
+    .sidebar-item .logout-btn span {
+        font-weight: bold;
+    }
+</style>
             </ul>
         </div>
     </div>

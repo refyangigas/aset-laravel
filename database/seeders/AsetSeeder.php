@@ -18,9 +18,15 @@ class AsetSeeder extends Seeder
         $faker = Faker::create();
 
         foreach (range(1, 10) as $index) {
+            $fotoName = 'aset_'.$index.'.jpg'; // Buat nama file gambar yang unik
+
+            // Simpan gambar secara lokal di folder 'public/fotoaset/'
+            $fotoPath = public_path('fotoaset/'.$fotoName);
+            copy($faker->imageUrl($width = 640, $height = 480), $fotoPath);
+
             Aset::create([
                 'nomor_seri' => $faker->unique()->bothify('SERI###'),
-                'foto' => $faker->imageUrl($width = 640, $height = 480),
+                'foto' => $fotoName, // Simpan nama file gambar ke dalam database
                 'nama_aset' => $faker->word,
                 'jumlah' => $faker->numberBetween(1, 20),
                 'lokasi_id' => $faker->randomElement(['1', '2', '3']), // Memastikan lokasi_id selalu terisi
