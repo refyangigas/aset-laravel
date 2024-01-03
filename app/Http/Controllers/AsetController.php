@@ -61,8 +61,8 @@ class AsetController extends Controller
     public function tampilkandata($id)
     {
         $data = Aset::find($id);
-
-        return view('tampildata', compact('data'));
+        $lokasi = Lokasi::all();
+        return view('tampildata', compact('data', 'lokasi'));
     }
 
     public function updatedata(Request $request, $id)
@@ -71,9 +71,6 @@ class AsetController extends Controller
 
         // Update atribut lainnya kecuali 'foto'
         $data->update($request->except('foto'));
-        if (session('halaman_url')) {
-            return Redirect(session('halaman_url'))->with('success', 'Data Berhasil diedit');
-        }
 
         if ($request->hasFile('new_foto')) {
             // Hapus foto lama jika ada
@@ -96,7 +93,7 @@ class AsetController extends Controller
 
         $data->save();
 
-        return redirect()->route('aset')->with('success', 'Data Berhasil diedit');
+        return redirect()->route('tampilkandata', ['id' => $id])->with('success', 'Data Berhasil diedit');
     }
 
 

@@ -66,7 +66,7 @@
                                 <a href="/tampilkandata/{{ $row->id }}" type="button"
                                     class="btn btn-success">Edit</a>
                                 <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}"
-                                    data-nama="{{ $row->nama_aset }}">Hapus</button>
+                                    data-nama="{{ $row->nama_aset }}">Hapus</a>
                             </td>
                         </tr>
                     @endforeach
@@ -87,85 +87,32 @@
             });
         });
     </script>
+
     <script>
-        < script >
-            $('.delete').click(function(event) {
-                event.preventDefault(); // Mencegah tindakan default dari link
+        $(document).ready(function() {
+            $('.delete').on('click', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var nama = $(this).data('nama');
 
-                var asetid = $(this).data('id'); // Menggunakan data() untuk mendapatkan nilai data-id
-                var nama = $(this).data('nama'); // Menggunakan data() untuk mendapatkan nilai data-nama
-
+                // Tampilkan konfirmasi SweetAlert2
                 Swal.fire({
-                    title: "Yakin?",
-                    text: "Kamu akan menghapus aset dengan nama " + nama + " ",
-                    icon: "warning",
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda akan menghapus " + nama +
+                        ". Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Ya, hapus!",
-                    cancelButtonText: "Batal",
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Lakukan permintaan penghapusan ke backend
-                        $.ajax({
-                            method: 'GET',
-                            url: '/delete/' + asetid,
-                            success: function(response) {
-                                // Tampilkan pesan sukses
-                                Swal.fire("Data berhasil dihapus", {
-                                    icon: "success",
-                                }).then(() => {
-                                    // Muat ulang halaman setelah penghapusan
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                // Tampilkan pesan kesalahan jika permintaan gagal
-                                Swal.fire("Terjadi kesalahan", "Data tidak terhapus", "error");
-                            }
-                        });
-                    }
-                });
-            }); <
-        /> <
-        script >
-            $('.delete').click(function(event) {
-                event.preventDefault(); // Mencegah tindakan default dari link
-
-                var asetid = $(this).data('id'); // Menggunakan data() untuk mendapatkan nilai data-id
-                var nama = $(this).data('nama'); // Menggunakan data() untuk mendapatkan nilai data-nama
-
-                Swal.fire({
-                    title: "Yakin?",
-                    text: "Kamu akan menghapus aset dengan nama " + nama + " ",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Ya, hapus!",
-                    cancelButtonText: "Batal",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Lakukan permintaan penghapusan ke backend
-                        $.ajax({
-                            method: 'GET',
-                            url: '/delete/' + asetid,
-                            success: function(response) {
-                                // Tampilkan pesan sukses
-                                Swal.fire("Data berhasil dihapus", {
-                                    icon: "success",
-                                }).then(() => {
-                                    // Muat ulang halaman setelah penghapusan
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                // Tampilkan pesan kesalahan jika permintaan gagal
-                                Swal.fire("Terjadi kesalahan", "Data tidak terhapus", "error");
-                            }
-                        });
+                        // Jika dikonfirmasi, lakukan penghapusan dengan mengarahkan ke route delete
+                        window.location.href = '/delete/' + id;
                     }
                 });
             });
-    </script>
-
+        });
     </script>
 @endsection
