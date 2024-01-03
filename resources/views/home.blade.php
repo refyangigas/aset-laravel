@@ -2,7 +2,7 @@
 <title>Data Aset</title>
 
 @section('content')
-    <h1>Home</h1>
+    <h1></h1>
     <canvas id="asetChart" width="400" height="200"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
