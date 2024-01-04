@@ -69,7 +69,7 @@
                                 <form id="deleteForm-{{ $row->id }}" method="post"
                                     action="{{ url('/delete/' . $row->id) }}" style="display:inline">
                                     @csrf
-                                    @method('POST')
+                                    @method('delete')
                                     <button type="button" class="btn btn-danger delete" data-id="{{ $row->id }}"
                                         data-nama="{{ $row->nama_aset }}"
                                         onclick="confirmDelete('{{ $row->id }}')">Hapus</button>

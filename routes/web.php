@@ -28,6 +28,7 @@ Route::post('/insertdata', [AsetController::class, 'insertdata'])->name('insertd
 
 Route::post('/tampilkandata/{id}', [AsetController::class, 'tampilkandata'])->name('tampilkandata');
 Route::post('/updatedata/{id}', [AsetController::class, 'updatedata'])->name('updatedata');
+
 Route::delete('/delete/{id}', [AsetController::class, 'delete'])->name('delete');
 
 // Route::post('/delete/{id}', [AsetController::class, 'delete'])->name('delete');
