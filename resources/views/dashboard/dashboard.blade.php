@@ -18,7 +18,6 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-            <h3>DATA ASET DPPPAKB 2024</h3>
             <div class="page-heading">
             </div>
             <div class="page-content">

@@ -2,7 +2,7 @@
 <title>Data Aset</title>
 
 @section('content')
-    <h3>Data Aset</h3>
+    <h1>Data Aset</h1>
     <div class="container">
         <div class="row g-3 align-items-center mt-1 mb-3">
             <div class="col-auto">
