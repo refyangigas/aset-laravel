@@ -28,7 +28,7 @@ Route::post('/insertdata', [AsetController::class, 'insertdata'])->name('insertd
 Route::get('/tampilkandata/{id}', [AsetController::class, 'tampilkandata'])->name('tampilkandata');
 Route::post('/updatedata/{id}', [AsetController::class, 'updatedata'])->name('updatedata');
 
-Route::post('/delete/{id}', [AsetController::class, 'delete'])->name('delete');
+Route::delete('/delete/{id}', [AsetController::class, 'delete'])->name('delete');
 
 //export PDF
 Route::get('/exportpdf', [AsetController::class, 'exportpdf'])->name('exportpdf');

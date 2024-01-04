@@ -77,16 +77,6 @@
     </div>
 
     @include('include.script')
-    <script>
-        $('#inputSearch').keyup(function() {
-            var query = $(this).val()
-                .toLowerCase(); // Mendapatkan nilai dari input pencarian dan konversi ke lower case
-            $('tbody tr').filter(function() {
-                // Melakukan filter pada setiap baris tabel
-                $(this).toggle($(this).text().toLowerCase().indexOf(query) > -1);
-            });
-        });
-    </script>
 
     <script>
         $(document).ready(function() {
@@ -98,8 +88,7 @@
                 // Tampilkan konfirmasi SweetAlert2
                 Swal.fire({
                     title: 'Apakah Anda yakin?',
-                    text: "Anda akan menghapus " + nama +
-                        ". Data yang dihapus tidak dapat dikembalikan!",
+                    text: "Anda akan menghapus " + nama + ". Data yang dihapus tidak dapat dikembalikan!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
@@ -112,6 +101,17 @@
                         window.location.href = '/delete/' + id;
                     }
                 });
+            });
+        });
+    </script>
+
+    <script>
+        $('#inputSearch').keyup(function() {
+            var query = $(this).val()
+                .toLowerCase(); // Mendapatkan nilai dari input pencarian dan konversi ke lower case
+            $('tbody tr').filter(function() {
+                // Melakukan filter pada setiap baris tabel
+                $(this).toggle($(this).text().toLowerCase().indexOf(query) > -1);
             });
         });
     </script>
