@@ -65,8 +65,37 @@
                             <td>
                                 <a href="/tampilkandata/{{ $row->id }}" type="button"
                                     class="btn btn-success">Edit</a>
-                                <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}"
-                                    data-nama="{{ $row->nama_aset }}">Hapus</a>
+
+                                <form id="deleteForm-{{ $row->id }}" method="post"
+                                    action="{{ url('/delete/' . $row->id) }}" style="display:inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger delete" data-id="{{ $row->id }}"
+                                        data-nama="{{ $row->nama_aset }}"
+                                        onclick="confirmDelete('{{ $row->id }}')">Hapus</button>
+                                </form>
+                            </td>
+
+                            <script>
+                                function confirmDelete(itemId) {
+                                    Swal.fire({
+                                        title: 'Apakah Anda yakin?',
+                                        text: "Anda akan menghapus item ini. Data yang dihapus tidak dapat dikembalikan!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ya, hapus!',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Submit form for deleting data
+                                            document.getElementById('deleteForm-' + itemId).submit();
+                                        }
+                                    });
+                                }
+                            </script>
+
                             </td>
                         </tr>
                     @endforeach
@@ -77,34 +106,7 @@
     </div>
 
     @include('include.script')
-
-    <script>
-        $(document).ready(function() {
-            $('.delete').on('click', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var nama = $(this).data('nama');
-
-                // Tampilkan konfirmasi SweetAlert2
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda akan menghapus " + nama + ". Data yang dihapus tidak dapat dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Jika dikonfirmasi, lakukan penghapusan dengan mengarahkan ke route delete
-                        window.location.href = '/delete/' + id;
-                    }
-                });
-            });
-        });
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#inputSearch').keyup(function() {
             var query = $(this).val()
