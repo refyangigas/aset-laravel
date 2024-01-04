@@ -106,56 +106,7 @@
     </div>
 
     @include('include.script')
-<<<<<<< Updated upstream
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-=======
-
-    <script>
-        $(document).ready(function() {
-            $('.delete').on('click', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var nama = $(this).data('nama');
-
-                // Tampilkan konfirmasi SweetAlert2
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda akan menghapus " + nama +
-                        ". Data yang dihapus tidak dapat dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Jika dikonfirmasi, lakukan penghapusan dengan metode DELETE
-                        fetch('/delete/' + id, {
-                            method: 'DELETE'
-                        }).then(response => {
-                            // Tambahkan penanganan respons di sini
-                            // Contoh:
-                            if (response.ok) {
-                                // Jika berhasil
-                                // Tambahkan logika atau perubahan UI di sini
-                                // Contoh:
-                                window.location.reload(); // Contoh: Refresh halaman
-                            } else {
-                                // Jika terjadi kesalahan dalam penghapusan
-                                throw new Error('Terjadi kesalahan dalam penghapusan.');
-                            }
-                        }).catch(error => {
-                            // Tampilkan pesan kesalahan atau lakukan penanganan kesalahan lainnya
-                            console.error('Error:', error);
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-
->>>>>>> Stashed changes
     <script>
         $('#inputSearch').keyup(function() {
             var query = $(this).val()
