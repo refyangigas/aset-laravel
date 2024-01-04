@@ -2,7 +2,7 @@
 <title>Dashboard</title>
 
 @section('content')
-    <h1>Jumlah Aset Per Tahun</h1>
+    <h1>Jumlah Aset per Tahun</h1>
     <canvas id="asetChart" width="400" height="200"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
